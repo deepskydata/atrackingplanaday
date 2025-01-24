@@ -1,0 +1,55 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.notion/tracking/block/v1.0.json",
+    "title": "Notion Block Entity Schema",
+    "description": "Schema for Notion block entity events",
+    "self": {
+      "vendor": "com.notion",
+      "namespace": "tracking.entity.block",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": ["string", "null"],
+        "description": "Entity name",
+        "enum": ["block"]
+      },
+      "activity": {
+        "type": ["string", "null"],
+        "description": "Block activity type",
+        "enum": ["created", "updated", "deleted"]
+      },
+      "block_id": {
+        "type": "string",
+        "description": "Unique block identifier"
+      },
+      "block_type": {
+        "type": "string",
+        "description": "Type of content block",
+        "enum": ["text", "image", "table", "chart", "database"]
+      },
+      "block_page_id": {
+        "type": "string",
+        "description": "Parent page identifier"
+      },
+      "block_created_at": {
+        "type": "string",
+        "description": "Block creation timestamp",
+        "format": "date-time"
+      },
+      "block_last_modified": {
+        "type": "string",
+        "description": "Last modification timestamp",
+        "format": "date-time"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "block_id",
+      "block_type",
+      "block_page_id"
+    ],
+    "additionalProperties": false
+  }

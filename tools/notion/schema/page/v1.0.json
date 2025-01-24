@@ -1,0 +1,64 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.notion/tracking/page/v1.0.json",
+    "title": "Notion Page Entity Schema",
+    "description": "Schema for Notion page entity events",
+    "self": {
+      "vendor": "com.notion",
+      "namespace": "tracking.entity.page",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": ["string", "null"],
+        "description": "Entity name",
+        "enum": ["page"]
+      },
+      "activity": {
+        "type": ["string", "null"],
+        "description": "Page activity type",
+        "enum": ["created", "updated", "shared"]
+      },
+      "page_id": {
+        "type": "string",
+        "description": "Unique page identifier"
+      },
+      "page_workspace_id": {
+        "type": "string",
+        "description": "Parent workspace identifier"
+      },
+      "page_type": {
+        "type": "string",
+        "description": "Type of page",
+        "enum": ["doc", "database"]
+      },
+      "page_blocks_count": {
+        "type": "integer",
+        "description": "Number of content blocks in page",
+        "minimum": 0
+      },
+      "page_shared_count": {
+        "type": "integer",
+        "description": "Number of times page has been shared",
+        "minimum": 0
+      },
+      "page_last_modified": {
+        "type": "string",
+        "description": "Last modification timestamp",
+        "format": "date-time"
+      },
+      "page_copied_from_page": {
+        "type": "boolean",
+        "description": "Whether page is copied from another page"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "page_id",
+      "page_workspace_id",
+      "page_type"
+    ],
+    "additionalProperties": false
+  }

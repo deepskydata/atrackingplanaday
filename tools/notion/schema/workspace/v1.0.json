@@ -1,0 +1,60 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.notion/tracking/workspace/v1.0.json",
+    "title": "Notion Workspace Entity Schema",
+    "description": "Schema for Notion workspace entity events",
+    "self": {
+      "vendor": "com.notion",
+      "namespace": "tracking.entity.workspace",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": ["string", "null"],
+        "description": "Entity name",
+        "enum": ["workspace"]
+      },
+      "activity": {
+        "type": ["string", "null"],
+        "description": "Workspace activity type",
+        "enum": ["created", "updated", "shared", "deleted"]
+      },
+      "workspace_id": {
+        "type": "string",
+        "description": "Unique workspace identifier"
+      },
+      "workspace_name": {
+        "type": "string",
+        "description": "Name of workspace"
+      },
+      "workspace_type": {
+        "type": "string",
+        "description": "Type of workspace",
+        "enum": ["personal", "team"]
+      },
+      "workspace_members_count": {
+        "type": "integer",
+        "description": "Number of workspace members",
+        "minimum": 1
+      },
+      "workspace_pages_count": {
+        "type": "integer",
+        "description": "Number of pages in workspace",
+        "minimum": 0
+      },
+      "workspace_created_at": {
+        "type": "string",
+        "description": "Workspace creation timestamp",
+        "format": "date-time"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "workspace_id",
+      "workspace_type",
+      "workspace_created_at"
+    ],
+    "additionalProperties": false
+  }

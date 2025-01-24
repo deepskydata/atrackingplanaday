@@ -1,0 +1,61 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.notion/tracking/account/v1.0.json",
+    "title": "Notion Account Entity Schema",
+    "description": "Schema for Notion account entity events",
+    "self": {
+      "vendor": "com.notion",
+      "namespace": "tracking.entity.account",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": ["string", "null"],
+        "description": "Entity name",
+        "enum": ["account"]
+      },
+      "activity": {
+        "type": ["string", "null"],
+        "description": "Account activity type",
+        "enum": ["created", "deleted"]
+      },
+      "account_id": {
+        "type": "string",
+        "description": "Unique account identifier"
+      },
+      "account_email": {
+        "type": "string",
+        "description": "Account email address",
+        "format": "email"
+      },
+      "account_subscription_plan": {
+        "type": "string",
+        "description": "Current subscription plan",
+        "enum": ["free", "personal", "team", "enterprise"]
+      },
+      "account_workspaces_count": {
+        "type": "integer",
+        "description": "Number of workspaces owned by account",
+        "minimum": 0
+      },
+      "account_creation_date": {
+        "type": "string",
+        "description": "Account creation timestamp",
+        "format": "date-time"
+      },
+      "account_last_active": {
+        "type": "string",
+        "description": "Last activity timestamp",
+        "format": "date-time"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "account_id",
+      "account_email",
+      "account_subscription_plan"
+    ],
+    "additionalProperties": false
+  }

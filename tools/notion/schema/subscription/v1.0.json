@@ -1,0 +1,66 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.notion/tracking/subscription/v1.0.json",
+    "title": "Notion Subscription Entity Schema",
+    "description": "Schema for Notion subscription entity events",
+    "self": {
+      "vendor": "com.notion",
+      "namespace": "tracking.entity.subscription",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": ["string", "null"],
+        "description": "Entity name",
+        "enum": ["subscription"]
+      },
+      "activity": {
+        "type": ["string", "null"],
+        "description": "Subscription activity type",
+        "enum": ["created", "renewed", "cancelled", "ended"]
+      },
+      "subscription_id": {
+        "type": "string",
+        "description": "Unique subscription identifier"
+      },
+      "subscription_plan": {
+        "type": "string",
+        "description": "Subscription plan type",
+        "enum": ["personal", "team", "enterprise"]
+      },
+      "subscription_status": {
+        "type": "string",
+        "description": "Current subscription status",
+        "enum": ["active", "cancelled", "ended"]
+      },
+      "subscription_start_date": {
+        "type": "string",
+        "description": "Subscription start timestamp",
+        "format": "date-time"
+      },
+      "subscription_end_date": {
+        "type": "string",
+        "description": "Subscription end timestamp",
+        "format": "date-time"
+      },
+      "subscription_billing_period": {
+        "type": "string",
+        "description": "Billing frequency",
+        "enum": ["monthly", "yearly"]
+      },
+      "subscription_amount": {
+        "type": "number",
+        "description": "Subscription cost",
+        "minimum": 0
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "subscription_id",
+      "subscription_plan",
+      "subscription_status"
+    ],
+    "additionalProperties": false
+  }
