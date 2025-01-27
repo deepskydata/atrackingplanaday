@@ -1,0 +1,385 @@
+{
+    "metadata": {
+      "version": "1.0",
+      "last_updated": "2024-01-27",
+      "owner": "Analytics Team"
+    },
+    "entities": {
+      "workspace": {
+        "description": "Represents a Slack workspace where teams collaborate",
+        "properties": {
+          "workspace_id": {
+            "type": "string",
+            "description": "Unique identifier for the workspace",
+            "required": true,
+            "example": "W123456"
+          },
+          "workspace_name": {
+            "type": "string",
+            "description": "Display name of the workspace",
+            "required": true,
+            "example": "Acme Team"
+          },
+          "workspace_created_at": {
+            "type": "string",
+            "description": "Timestamp when workspace was created",
+            "required": true,
+            "example": "2024-01-27T10:30:00Z"
+          },
+          "workspace_age_days": {
+            "type": "integer",
+            "description": "Age of workspace in days",
+            "required": false,
+            "example": 30
+          },
+          "workspace_status": {
+            "type": "string",
+            "description": "Current status of the workspace",
+            "required": true,
+            "example": "active"
+          },
+          "workspace_total_members": {
+            "type": "integer",
+            "description": "Total number of members in workspace",
+            "required": true,
+            "example": 50
+          },
+          "workspace_total_guests": {
+            "type": "integer",
+            "description": "Total number of guests in workspace",
+            "required": true,
+            "example": 5
+          },
+          "workspace_domain": {
+            "type": "string",
+            "description": "Custom domain if set for the workspace",
+            "required": false,
+            "example": "acme"
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when a new workspace is created",
+            "trigger": "Admin completes workspace creation flow",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["New Workspace Growth", "Workspace Creation Success Rate"]
+          },
+          "deleted": {
+            "description": "Fired when a workspace is deleted",
+            "trigger": "Admin confirms workspace deletion",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Workspace Churn Rate", "Average Workspace Lifetime"]
+          }
+        }
+      },
+      "channel": {
+        "description": "Represents a channel within a Slack workspace",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "Unique identifier for the channel",
+            "required": true,
+            "example": "C123456"
+          },
+          "channel_type": {
+            "type": "string",
+            "description": "Type of channel",
+            "required": true,
+            "example": "public"
+          },
+          "channel_created_at": {
+            "type": "string",
+            "description": "Timestamp when channel was created",
+            "required": true,
+            "example": "2024-01-27T10:30:00Z"
+          },
+          "channel_age_days": {
+            "type": "integer",
+            "description": "Age of channel in days",
+            "required": false,
+            "example": 15
+          },
+          "channel_creator_id": {
+            "type": "string",
+            "description": "User ID of channel creator",
+            "required": true,
+            "example": "U123456"
+          },
+          "channel_member_count": {
+            "type": "integer",
+            "description": "Current number of members in channel",
+            "required": true,
+            "example": 25
+          },
+          "channel_workspace_id": {
+            "type": "string",
+            "description": "ID of parent workspace",
+            "required": true,
+            "example": "W123456"
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when a new channel is created",
+            "trigger": "User creates a new channel",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Channel Creation Rate", "Channels per Workspace"]
+          },
+          "joined": {
+            "description": "Fired when a user joins a channel",
+            "trigger": "User joins channel or accepts invitation",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Channel Join Rate", "Average Members per Channel"]
+          },
+          "left": {
+            "description": "Fired when a user leaves a channel",
+            "trigger": "User leaves channel",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Channel Churn Rate", "Member Retention per Channel"]
+          },
+          "archived": {
+            "description": "Fired when a channel is archived",
+            "trigger": "Admin or owner archives channel",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Channel Archive Rate", "Average Channel Lifetime"]
+          }
+        }
+      },
+      "message": {
+        "description": "Represents a message sent in a Slack channel",
+        "properties": {
+          "message_id": {
+            "type": "string",
+            "description": "Unique identifier for the message",
+            "required": true,
+            "example": "M123456"
+          },
+          "message_channel_id": {
+            "type": "string",
+            "description": "ID of the channel containing the message",
+            "required": true,
+            "example": "C123456"
+          },
+          "message_workspace_id": {
+            "type": "string",
+            "description": "ID of the workspace containing the message",
+            "required": true,
+            "example": "W123456"
+          },
+          "message_sender_id": {
+            "type": "string",
+            "description": "User ID of message sender",
+            "required": true,
+            "example": "U123456"
+          },
+          "message_type": {
+            "type": "string",
+            "description": "Type of message",
+            "required": true,
+            "example": "regular"
+          },
+          "message_has_attachments": {
+            "type": "boolean",
+            "description": "Whether message contains attachments",
+            "required": true,
+            "example": false
+          },
+          "message_has_mentions": {
+            "type": "boolean",
+            "description": "Whether message contains user mentions",
+            "required": true,
+            "example": true
+          },
+          "message_created_at": {
+            "type": "string",
+            "description": "Timestamp when message was created",
+            "required": true,
+            "example": "2024-01-27T10:30:00Z"
+          }
+        },
+        "activities": {
+          "sent": {
+            "description": "Fired when a new message is sent",
+            "trigger": "User sends a message in a channel",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Message Volume", "Messages per Channel"]
+          },
+          "read": {
+            "description": "Fired when a message is marked as read",
+            "trigger": "User views a message",
+            "sources": ["Web Application", "Mobile App"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Message Read Rate", "Time to Read"]
+          },
+          "replied": {
+            "description": "Fired when a message is replied to in thread",
+            "trigger": "User replies to a message in thread",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Thread Usage Rate", "Replies per Message"]
+          }
+        }
+      },
+      "user": {
+        "description": "Represents a user in Slack",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "description": "Unique identifier for the user",
+            "required": true,
+            "example": "U123456"
+          },
+          "user_email_domain": {
+            "type": "string",
+            "description": "Domain part of user's email",
+            "required": true,
+            "example": "acme.com"
+          },
+          "user_role": {
+            "type": "string",
+            "description": "User's role in the workspace",
+            "required": true,
+            "example": "member"
+          },
+          "user_status": {
+            "type": "string",
+            "description": "Current status of user",
+            "required": true,
+            "example": "active"
+          },
+          "user_created_at": {
+            "type": "string",
+            "description": "Timestamp when user was created",
+            "required": true,
+            "example": "2024-01-27T10:30:00Z"
+          },
+          "user_last_active_days": {
+            "type": "integer",
+            "description": "Days since user was last active",
+            "required": false,
+            "example": 2
+          },
+          "user_workspace_count": {
+            "type": "integer",
+            "description": "Number of workspaces user belongs to",
+            "required": true,
+            "example": 1
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when a new user account is created",
+            "trigger": "User completes signup process",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["User Growth Rate", "Signup Success Rate"]
+          },
+          "invited": {
+            "description": "Fired when a user is invited to workspace",
+            "trigger": "Admin sends workspace invitation",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Invitation Rate", "Invitation Acceptance Rate"]
+          },
+          "joined": {
+            "description": "Fired when a user accepts workspace invitation",
+            "trigger": "User accepts workspace invitation",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Join Rate", "Time to Accept"]
+          },
+          "role_changed": {
+            "description": "Fired when a user's role is modified",
+            "trigger": "Admin changes user's role",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Role Change Rate", "Admin Ratio"]
+          }
+        }
+      },
+      "subscription": {
+        "description": "Represents a workspace's subscription plan",
+        "properties": {
+          "subscription_id": {
+            "type": "string",
+            "description": "Unique identifier for the subscription",
+            "required": true,
+            "example": "S123456"
+          },
+          "subscription_workspace_id": {
+            "type": "string",
+            "description": "ID of workspace this subscription belongs to",
+            "required": true,
+            "example": "W123456"
+          },
+          "subscription_plan": {
+            "type": "string",
+            "description": "Type of subscription plan",
+            "required": true,
+            "example": "standard"
+          },
+          "subscription_status": {
+            "type": "string",
+            "description": "Current status of subscription",
+            "required": true,
+            "example": "active"
+          },
+          "subscription_seats": {
+            "type": "integer",
+            "description": "Number of paid seats in subscription",
+            "required": true,
+            "example": 50
+          },
+          "subscription_start_date": {
+            "type": "string",
+            "description": "Date when subscription started",
+            "required": true,
+            "example": "2024-01-27"
+          },
+          "subscription_billing_interval": {
+            "type": "string",
+            "description": "Billing frequency",
+            "required": true,
+            "example": "monthly"
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when a new subscription is created",
+            "trigger": "Admin completes subscription purchase",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Conversion Rate", "New MRR"]
+          },
+          "updated": {
+            "description": "Fired when subscription details are modified",
+            "trigger": "Admin modifies subscription",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Plan Change Rate", "Seat Change Rate"]
+          },
+          "renewed": {
+            "description": "Fired when subscription is renewed",
+            "trigger": "Successful subscription renewal",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Renewal Rate", "MRR Retention"]
+          },
+          "ended": {
+            "description": "Fired when subscription is ended",
+            "trigger": "Subscription cancellation or expiration",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Churn Rate", "Average Subscription Lifetime"]
+          }
+        }
+      }
+    }
+  }

@@ -4,7 +4,13 @@
 Notion is a collaborative workspace platform that combines documents, databases, and project management tools. It enables teams to create, organize, and share content through customizable pages and databases.
 
 ## Implementation Context
-As detailed in Chapter [X] of the Analytics Implementation Workbook, this tracking plan follows the [specific methodology/principle].
+As detailed in Event Data DesignChapter of the Analytics Implementation Workbook, this tracking plan follows the Double Three Layer Framework (D3L).
+
+## References:
+My book, I used with Claude AI to create that tracking plan: https://link.timodechau.com/evAz2u
+Blog post describing the design: 
+YouTube video showing how I created this design: 
+
 
 
 ## Implementation Overview
@@ -194,48 +200,3 @@ notionDataLayer.push({
 4. Include error handling for failed event pushes
 5. Test events in development environment first
 
-## Data Validation Example
-
-```javascript
-function validateEvent(eventName, properties) {
-    // Event validation schema
-    const schema = {
-        workspace_created: {
-            required: ['workspace_id', 'workspace_type', 'workspace_created_at'],
-            types: {
-                workspace_id: 'string',
-                workspace_members_count: 'number'
-            }
-        }
-        // Add other event schemas
-    };
-    
-    // Validation logic
-    const eventSchema = schema[eventName];
-    if (!eventSchema) return false;
-    
-    // Check required properties
-    for (const prop of eventSchema.required) {
-        if (!(prop in properties)) return false;
-    }
-    
-    // Type checking
-    for (const [prop, type] of Object.entries(eventSchema.types)) {
-        if (properties[prop] && typeof properties[prop] !== type) return false;
-    }
-    
-    return true;
-}
-
-// Usage
-function pushEvent(eventName, properties) {
-    if (validateEvent(eventName, properties)) {
-        notionDataLayer.push({
-            event: eventName,
-            properties: properties
-        });
-    } else {
-        console.error('Invalid event data:', eventName, properties);
-    }
-}
-```

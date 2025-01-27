@@ -1,0 +1,71 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.slack/analytics/workspace/v1.0.json",
+    "title": "Workspace Entity Specification",
+    "description": "Schema specification for Slack workspace entity events",
+    "self": {
+      "vendor": "com.slack",
+      "namespace": "analytics.workspace",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "description": "Entity type",
+        "enum": ["workspace"]
+      },
+      "activity": {
+        "type": "string",
+        "description": "Workspace activity type",
+        "enum": ["created", "deleted"]
+      },
+      "workspace_id": {
+        "type": "string",
+        "description": "Unique workspace identifier"
+      },
+      "workspace_name": {
+        "type": "string",
+        "description": "Display name of the workspace"
+      },
+      "workspace_created_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp when workspace was created"
+      },
+      "workspace_age_days": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Age of workspace in days"
+      },
+      "workspace_status": {
+        "type": "string",
+        "description": "Current status of the workspace",
+        "enum": ["active", "suspended", "deleted"]
+      },
+      "workspace_total_members": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Total number of members in workspace"
+      },
+      "workspace_total_guests": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Total number of guests in workspace"
+      },
+      "workspace_domain": {
+        "type": ["string", "null"],
+        "description": "Custom domain if set for the workspace"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "workspace_id",
+      "workspace_created_at",
+      "workspace_status",
+      "workspace_total_members",
+      "workspace_total_guests"
+    ],
+    "additionalProperties": false
+  }

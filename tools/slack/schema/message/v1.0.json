@@ -1,0 +1,69 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.slack/analytics/message/v1.0.json",
+    "title": "Message Entity Specification",
+    "description": "Schema specification for Slack message entity events",
+    "self": {
+      "vendor": "com.slack",
+      "namespace": "analytics.message",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "description": "Entity type",
+        "enum": ["message"]
+      },
+      "activity": {
+        "type": "string",
+        "description": "Message activity type",
+        "enum": ["sent", "read", "replied"]
+      },
+      "message_id": {
+        "type": "string",
+        "description": "Unique message identifier"
+      },
+      "message_channel_id": {
+        "type": "string",
+        "description": "ID of the channel containing the message"
+      },
+      "message_workspace_id": {
+        "type": "string",
+        "description": "ID of the workspace containing the message"
+      },
+      "message_sender_id": {
+        "type": "string",
+        "description": "User ID of message sender"
+      },
+      "message_type": {
+        "type": "string",
+        "description": "Type of message",
+        "enum": ["regular", "thread_reply", "system"]
+      },
+      "message_has_attachments": {
+        "type": "boolean",
+        "description": "Whether message contains attachments"
+      },
+      "message_has_mentions": {
+        "type": "boolean",
+        "description": "Whether message contains user mentions"
+      },
+      "message_created_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp when message was created"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "message_id",
+      "message_channel_id",
+      "message_workspace_id",
+      "message_sender_id",
+      "message_type",
+      "message_created_at"
+    ],
+    "additionalProperties": false
+  }

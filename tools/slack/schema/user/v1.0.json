@@ -1,0 +1,68 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.slack/analytics/user/v1.0.json",
+    "title": "User Entity Specification",
+    "description": "Schema specification for Slack user entity events",
+    "self": {
+      "vendor": "com.slack",
+      "namespace": "analytics.user",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "description": "Entity type",
+        "enum": ["user"]
+      },
+      "activity": {
+        "type": "string",
+        "description": "User activity type",
+        "enum": ["created", "invited", "joined", "role_changed"]
+      },
+      "user_id": {
+        "type": "string",
+        "description": "Unique user identifier"
+      },
+      "user_email_domain": {
+        "type": "string",
+        "description": "Domain part of user's email"
+      },
+      "user_role": {
+        "type": "string",
+        "description": "User's role in the workspace",
+        "enum": ["guest", "member", "admin"]
+      },
+      "user_status": {
+        "type": "string",
+        "description": "Current status of user",
+        "enum": ["active", "inactive", "deleted"]
+      },
+      "user_created_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp when user was created"
+      },
+      "user_last_active_days": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Number of days since user was last active"
+      },
+      "user_workspace_count": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Number of workspaces user belongs to"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "user_id",
+      "user_email_domain",
+      "user_role",
+      "user_status",
+      "user_created_at",
+      "user_workspace_count"
+    ],
+    "additionalProperties": false
+  }

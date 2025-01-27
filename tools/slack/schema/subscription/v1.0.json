@@ -1,0 +1,69 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.slack/analytics/subscription/v1.0.json",
+    "title": "Subscription Entity Specification",
+    "description": "Schema specification for Slack subscription entity events",
+    "self": {
+      "vendor": "com.slack",
+      "namespace": "analytics.subscription",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "description": "Entity type",
+        "enum": ["subscription"]
+      },
+      "activity": {
+        "type": "string",
+        "description": "Subscription activity type",
+        "enum": ["created", "updated", "renewed", "ended"]
+      },
+      "subscription_id": {
+        "type": "string",
+        "description": "Unique subscription identifier"
+      },
+      "subscription_workspace_id": {
+        "type": "string",
+        "description": "ID of the workspace this subscription belongs to"
+      },
+      "subscription_plan": {
+        "type": "string",
+        "description": "Type of subscription plan",
+        "enum": ["free", "standard", "plus", "enterprise"]
+      },
+      "subscription_status": {
+        "type": "string",
+        "description": "Current status of subscription",
+        "enum": ["active", "past_due", "canceled"]
+      },
+      "subscription_seats": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Number of paid seats in subscription"
+      },
+      "subscription_start_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Date when subscription started"
+      },
+      "subscription_billing_interval": {
+        "type": "string",
+        "description": "Billing frequency",
+        "enum": ["monthly", "annual"]
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "subscription_id",
+      "subscription_workspace_id",
+      "subscription_plan",
+      "subscription_status",
+      "subscription_seats",
+      "subscription_start_date",
+      "subscription_billing_interval"
+    ],
+    "additionalProperties": false
+  }

@@ -1,0 +1,66 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.slack/analytics/channel/v1.0.json",
+    "title": "Channel Entity Specification",
+    "description": "Schema specification for Slack channel entity events",
+    "self": {
+      "vendor": "com.slack",
+      "namespace": "analytics.channel",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "description": "Entity type",
+        "enum": ["channel"]
+      },
+      "activity": {
+        "type": "string",
+        "description": "Channel activity type",
+        "enum": ["created", "joined", "left", "archived"]
+      },
+      "channel_id": {
+        "type": "string",
+        "description": "Unique channel identifier"
+      },
+      "channel_type": {
+        "type": "string",
+        "description": "Type of channel",
+        "enum": ["public", "private"]
+      },
+      "channel_created_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp when channel was created"
+      },
+      "channel_age_days": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Age of channel in days"
+      },
+      "channel_creator_id": {
+        "type": "string",
+        "description": "User ID of channel creator"
+      },
+      "channel_member_count": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Current number of members in channel"
+      },
+      "channel_workspace_id": {
+        "type": "string",
+        "description": "ID of parent workspace"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "channel_id",
+      "channel_type",
+      "channel_created_at",
+      "channel_workspace_id",
+      "channel_member_count"
+    ],
+    "additionalProperties": false
+  }
