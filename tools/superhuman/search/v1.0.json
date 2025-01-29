@@ -1,0 +1,85 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.superhuman/tracking/search/v1.0.json",
+    "title": "Search Entity Specification",
+    "description": "Schema for Superhuman search entity tracking",
+    "self": {
+      "vendor": "com.superhuman",
+      "namespace": "tracking.search",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": ["string", "null"],
+        "description": "Name of the entity",
+        "enum": ["search"]
+      },
+      "activity": {
+        "type": ["string", "null"],
+        "description": "Search entity activities",
+        "enum": ["performed"]
+      },
+      "search_id": {
+        "type": "string",
+        "description": "Unique identifier for the search query"
+      },
+      "search_type": {
+        "type": "string",
+        "description": "Type of search performed",
+        "enum": [
+          "regular",
+          "ai"
+        ]
+      },
+      "search_query": {
+        "type": "string",
+        "description": "Raw search query text",
+        "minLength": 1
+      },
+      "search_results_count": {
+        "type": "integer",
+        "description": "Number of results returned",
+        "minimum": 0
+      },
+      "search_time": {
+        "type": "number",
+        "description": "Time in seconds to execute search",
+        "minimum": 0,
+        "exclusiveMaximum": 30
+      },
+      "search_filter_used": {
+        "type": "boolean",
+        "description": "Whether search filters were applied"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "search_id",
+      "search_type",
+      "search_query",
+      "search_results_count",
+      "search_time",
+      "search_filter_used"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "search_type": {
+              "const": "ai"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "search_time": {
+              "minimum": 0.1
+            }
+          }
+        }
+      }
+    ]
+  }

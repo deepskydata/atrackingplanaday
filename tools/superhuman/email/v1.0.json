@@ -1,0 +1,98 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.superhuman/tracking/email/v1.0.json",
+    "title": "Email Entity Specification",
+    "description": "Schema for Superhuman email entity tracking",
+    "self": {
+      "vendor": "com.superhuman",
+      "namespace": "tracking.email",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": ["string", "null"],
+        "description": "Name of the entity",
+        "enum": ["email"]
+      },
+      "activity": {
+        "type": ["string", "null"],
+        "description": "Email entity activities",
+        "enum": [
+          "received",
+          "read",
+          "replied",
+          "done",
+          "snoozed"
+        ]
+      },
+      "email_id": {
+        "type": "string",
+        "description": "Unique identifier for the email"
+      },
+      "email_status": {
+        "type": "string",
+        "description": "Current status of the email",
+        "enum": [
+          "unread",
+          "read",
+          "done",
+          "snoozed",
+          "scheduled"
+        ]
+      },
+      "email_type": {
+        "type": "string",
+        "description": "Type of email",
+        "enum": [
+          "received",
+          "sent",
+          "draft"
+        ]
+      },
+      "email_size": {
+        "type": "integer",
+        "description": "Size of email in bytes",
+        "minimum": 0
+      },
+      "email_has_attachments": {
+        "type": "boolean",
+        "description": "Whether the email has attachments"
+      },
+      "email_thread_size": {
+        "type": "integer",
+        "description": "Number of emails in the thread",
+        "minimum": 1
+      },
+      "email_snooze_duration": {
+        "type": ["integer", "null"],
+        "description": "Time until snooze ends in seconds",
+        "minimum": 0
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "email_id",
+      "email_status",
+      "email_type",
+      "email_size",
+      "email_has_attachments",
+      "email_thread_size"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "email_status": {
+              "const": "snoozed"
+            }
+          }
+        },
+        "then": {
+          "required": ["email_snooze_duration"]
+        }
+      }
+    ]
+  }

@@ -1,0 +1,58 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.superhuman/tracking/account/v1.0.json",
+    "title": "Account Entity Specification",
+    "description": "Schema for Superhuman account entity tracking",
+    "self": {
+      "vendor": "com.superhuman",
+      "namespace": "tracking.account",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": ["string", "null"],
+        "description": "Name of the entity",
+        "enum": ["account"]
+      },
+      "activity": {
+        "type": ["string", "null"],
+        "description": "Account entity activities",
+        "enum": ["created", "deleted"]
+      },
+      "account_id": {
+        "type": "string",
+        "description": "Unique identifier for the account"
+      },
+      "account_status": {
+        "type": "string",
+        "description": "Current status of the account",
+        "enum": ["active", "suspended", "deleted"]
+      },
+      "account_type": {
+        "type": "string",
+        "description": "Type of account",
+        "enum": ["free", "premium"]
+      },
+      "account_created_days": {
+        "type": "integer",
+        "description": "Number of days since account creation",
+        "minimum": 0
+      },
+      "account_num_email_accounts": {
+        "type": "integer",
+        "description": "Number of connected email accounts",
+        "minimum": 0
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "account_id",
+      "account_status",
+      "account_type",
+      "account_created_days",
+      "account_num_email_accounts"
+    ],
+    "additionalProperties": false
+  }

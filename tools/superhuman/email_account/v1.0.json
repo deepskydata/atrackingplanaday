@@ -1,0 +1,112 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.superhuman/tracking/email_account/v1.0.json",
+    "title": "Email Account Entity Specification",
+    "description": "Schema for Superhuman email account entity tracking",
+    "self": {
+      "vendor": "com.superhuman",
+      "namespace": "tracking.email_account",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": ["string", "null"],
+        "description": "Name of the entity",
+        "enum": ["email_account"]
+      },
+      "activity": {
+        "type": ["string", "null"],
+        "description": "Email account entity activities",
+        "enum": [
+          "connected",
+          "inbox_zero_achieved",
+          "disconnected"
+        ]
+      },
+      "email_account_id": {
+        "type": "string",
+        "description": "Unique identifier for the email account"
+      },
+      "email_provider": {
+        "type": "string",
+        "description": "Email provider type",
+        "enum": [
+          "gmail",
+          "outlook",
+          "other"
+        ]
+      },
+      "email_account_status": {
+        "type": "string",
+        "description": "Current status of the email account",
+        "enum": [
+          "connected",
+          "error"
+        ]
+      },
+      "total_emails": {
+        "type": "integer",
+        "description": "Total number of emails in the account",
+        "minimum": 0
+      },
+      "inbox_count": {
+        "type": "integer",
+        "description": "Number of emails currently in inbox",
+        "minimum": 0
+      },
+      "days_since_inbox_zero": {
+        "type": "integer",
+        "description": "Days since last inbox zero achievement",
+        "minimum": 0
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "email_account_id",
+      "email_provider",
+      "email_account_status",
+      "total_emails",
+      "inbox_count",
+      "days_since_inbox_zero"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "activity": {
+              "const": "inbox_zero_achieved"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "inbox_count": {
+              "const": 0
+            },
+            "days_since_inbox_zero": {
+              "const": 0
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "activity": {
+              "const": "disconnected"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "email_account_status": {
+              "const": "error"
+            }
+          }
+        }
+      }
+    ]
+  }

@@ -1,0 +1,323 @@
+{
+    "metadata": {
+      "version": "1.0",
+      "last_updated": "2024-01-28",
+      "owner": "Analytics Team"
+    },
+    "entities": {
+      "account": {
+        "description": "Represents a user's Superhuman account",
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "description": "Unique identifier for the account",
+            "required": true,
+            "example": "acc_123456"
+          },
+          "account_status": {
+            "type": "string",
+            "description": "Current status of the account",
+            "required": true,
+            "example": "active"
+          },
+          "account_type": {
+            "type": "string",
+            "description": "Type of account",
+            "required": true,
+            "example": "premium"
+          },
+          "account_created_days": {
+            "type": "integer",
+            "description": "Number of days since account creation",
+            "required": true,
+            "example": 30
+          },
+          "account_num_email_accounts": {
+            "type": "integer",
+            "description": "Number of connected email accounts",
+            "required": true,
+            "example": 2
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when a new account is created",
+            "trigger": "User completes account creation flow",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Account Growth Rate", "Sign-up Conversion Rate"]
+          },
+          "deleted": {
+            "description": "Fired when an account is deleted",
+            "trigger": "User confirms account deletion",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Account Churn Rate", "Average Account Lifetime"]
+          }
+        }
+      },
+      "subscription": {
+        "description": "Represents a paid subscription to Superhuman",
+        "properties": {
+          "subscription_id": {
+            "type": "string",
+            "description": "Unique identifier for the subscription",
+            "required": true,
+            "example": "sub_123456"
+          },
+          "subscription_plan": {
+            "type": "string",
+            "description": "Type of subscription plan",
+            "required": true,
+            "example": "pro"
+          },
+          "subscription_status": {
+            "type": "string",
+            "description": "Current status of subscription",
+            "required": true,
+            "example": "active"
+          },
+          "subscription_billing_period": {
+            "type": "string",
+            "description": "Billing frequency",
+            "required": true,
+            "example": "annual"
+          },
+          "subscription_renewal_date": {
+            "type": "string",
+            "description": "Next renewal date",
+            "required": true,
+            "example": "2025-01-28"
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when a new subscription is created",
+            "trigger": "User completes subscription purchase",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Conversion Rate", "New MRR"]
+          },
+          "renewed": {
+            "description": "Fired when subscription is renewed",
+            "trigger": "Successful subscription renewal",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Renewal Rate", "MRR Retention"]
+          },
+          "canceled": {
+            "description": "Fired when subscription is canceled",
+            "trigger": "User requests subscription cancellation",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Cancellation Rate", "Time to Cancel"]
+          },
+          "ended": {
+            "description": "Fired when subscription period ends",
+            "trigger": "Subscription period expiration",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Churn Rate", "Subscription Lifetime"]
+          }
+        }
+      },
+      "email_account": {
+        "description": "Represents an email account connected to Superhuman",
+        "properties": {
+          "email_account_id": {
+            "type": "string",
+            "description": "Unique identifier for the email account",
+            "required": true,
+            "example": "ea_123456"
+          },
+          "email_provider": {
+            "type": "string",
+            "description": "Email provider type",
+            "required": true,
+            "example": "gmail"
+          },
+          "email_account_status": {
+            "type": "string",
+            "description": "Current status of the email account",
+            "required": true,
+            "example": "connected"
+          },
+          "total_emails": {
+            "type": "integer",
+            "description": "Total number of emails in account",
+            "required": true,
+            "example": 5000
+          },
+          "inbox_count": {
+            "type": "integer",
+            "description": "Number of emails in inbox",
+            "required": true,
+            "example": 25
+          },
+          "days_since_inbox_zero": {
+            "type": "integer",
+            "description": "Days since last inbox zero achieved",
+            "required": true,
+            "example": 3
+          }
+        },
+        "activities": {
+          "connected": {
+            "description": "Fired when new email account is connected",
+            "trigger": "User successfully connects email account",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Account Connection Rate", "Email Provider Distribution"]
+          },
+          "inbox_zero_achieved": {
+            "description": "Fired when inbox reaches zero emails",
+            "trigger": "Last email in inbox is processed",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Inbox Zero Rate", "Time to Zero"]
+          },
+          "disconnected": {
+            "description": "Fired when email account is disconnected",
+            "trigger": "User removes email account connection",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Disconnection Rate", "Average Connection Duration"]
+          }
+        }
+      },
+      "email": {
+        "description": "Represents an individual email in Superhuman",
+        "properties": {
+          "email_id": {
+            "type": "string",
+            "description": "Unique identifier for the email",
+            "required": true,
+            "example": "em_123456"
+          },
+          "email_status": {
+            "type": "string",
+            "description": "Current status of the email",
+            "required": true,
+            "example": "read"
+          },
+          "email_type": {
+            "type": "string",
+            "description": "Type of email",
+            "required": true,
+            "example": "received"
+          },
+          "email_size": {
+            "type": "integer",
+            "description": "Size of email in bytes",
+            "required": true,
+            "example": 15240
+          },
+          "email_has_attachments": {
+            "type": "boolean",
+            "description": "Whether email has attachments",
+            "required": true,
+            "example": false
+          },
+          "email_thread_size": {
+            "type": "integer",
+            "description": "Number of emails in thread",
+            "required": true,
+            "example": 3
+          },
+          "email_snooze_duration": {
+            "type": "integer",
+            "description": "Snooze duration in seconds",
+            "required": false,
+            "example": 86400
+          }
+        },
+        "activities": {
+          "received": {
+            "description": "Fired when new email arrives",
+            "trigger": "Email is received in inbox",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Email Volume", "Inbox Growth Rate"]
+          },
+          "read": {
+            "description": "Fired when email is read",
+            "trigger": "User opens and views email",
+            "sources": ["Frontend"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Read Rate", "Time to Read"]
+          },
+          "replied": {
+            "description": "Fired when email is replied to",
+            "trigger": "User sends reply to email",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Reply Rate", "Response Time"]
+          },
+          "done": {
+            "description": "Fired when email is marked as done",
+            "trigger": "User marks email as done",
+            "sources": ["Frontend"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Processing Rate", "Inbox Management Efficiency"]
+          },
+          "snoozed": {
+            "description": "Fired when email is snoozed",
+            "trigger": "User snoozes email",
+            "sources": ["Frontend"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Snooze Usage Rate", "Average Snooze Duration"]
+          }
+        }
+      },
+      "search": {
+        "description": "Represents a search query in Superhuman",
+        "properties": {
+          "search_id": {
+            "type": "string",
+            "description": "Unique identifier for the search",
+            "required": true,
+            "example": "sr_123456"
+          },
+          "search_type": {
+            "type": "string",
+            "description": "Type of search performed",
+            "required": true,
+            "example": "ai"
+          },
+          "search_query": {
+            "type": "string",
+            "description": "Raw search query text",
+            "required": true,
+            "example": "budget reports from last month"
+          },
+          "search_results_count": {
+            "type": "integer",
+            "description": "Number of results returned",
+            "required": true,
+            "example": 15
+          },
+          "search_time": {
+            "type": "number",
+            "description": "Time in seconds to execute search",
+            "required": true,
+            "example": 0.45
+          },
+          "search_filter_used": {
+            "type": "boolean",
+            "description": "Whether search filters were applied",
+            "required": true,
+            "example": true
+          }
+        },
+        "activities": {
+          "performed": {
+            "description": "Fired when search is executed",
+            "trigger": "User performs search query",
+            "sources": ["Frontend"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Search Volume", "Search Success Rate", "AI Usage Rate"]
+          }
+        }
+      }
+    }
+  }

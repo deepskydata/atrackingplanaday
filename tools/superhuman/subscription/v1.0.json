@@ -1,0 +1,139 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.superhuman/tracking/subscription/v1.0.json",
+    "title": "Subscription Entity Specification",
+    "description": "Schema for Superhuman subscription entity tracking",
+    "self": {
+      "vendor": "com.superhuman",
+      "namespace": "tracking.subscription",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": ["string", "null"],
+        "description": "Name of the entity",
+        "enum": ["subscription"]
+      },
+      "activity": {
+        "type": ["string", "null"],
+        "description": "Subscription entity activities",
+        "enum": [
+          "created",
+          "renewed",
+          "canceled",
+          "ended"
+        ]
+      },
+      "subscription_id": {
+        "type": "string",
+        "description": "Unique identifier for the subscription"
+      },
+      "subscription_plan": {
+        "type": "string",
+        "description": "Type of subscription plan",
+        "enum": [
+          "pro",
+          "team"
+        ]
+      },
+      "subscription_status": {
+        "type": "string",
+        "description": "Current status of the subscription",
+        "enum": [
+          "active",
+          "canceled",
+          "ended"
+        ]
+      },
+      "subscription_billing_period": {
+        "type": "string",
+        "description": "Billing frequency",
+        "enum": [
+          "monthly",
+          "annual"
+        ]
+      },
+      "subscription_renewal_date": {
+        "type": "string",
+        "description": "Next renewal date in YYYY-MM-DD format",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "subscription_id",
+      "subscription_plan",
+      "subscription_status",
+      "subscription_billing_period",
+      "subscription_renewal_date"
+    ],
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "activity": {
+              "const": "created"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "subscription_status": {
+              "const": "active"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "activity": {
+              "const": "renewed"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "subscription_status": {
+              "const": "active"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "activity": {
+              "const": "canceled"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "subscription_status": {
+              "const": "canceled"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "properties": {
+            "activity": {
+              "const": "ended"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "subscription_status": {
+              "const": "ended"
+            }
+          }
+        }
+      }
+    ]
+  }
