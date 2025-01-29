@@ -1,0 +1,65 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.vimcal/bookinglink/v1.0.json",
+    "title": "Booking Link Entity Schema",
+    "description": "Schema for booking link entity events",
+    "self": {
+      "vendor": "com.vimcal",
+      "namespace": "bookinglink",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "description": "Entity name",
+        "enum": ["booking_link"]
+      },
+      "activity": {
+        "type": "string",
+        "description": "Booking link activity type",
+        "enum": ["created", "deleted", "viewed", "slot_selected", "shared"]
+      },
+      "link_id": {
+        "type": "string",
+        "description": "Unique booking link identifier"
+      },
+      "link_type": {
+        "type": "string",
+        "description": "Type of booking link",
+        "enum": ["booking", "selected_slots"]
+      },
+      "link_duration": {
+        "type": "integer",
+        "description": "Default meeting duration in minutes",
+        "minimum": 1
+      },
+      "link_availability_pattern": {
+        "type": "string",
+        "description": "Availability pattern type",
+        "enum": ["working_hours", "custom"]
+      },
+      "link_has_buffer": {
+        "type": "boolean",
+        "description": "Whether buffer times are enabled"
+      },
+      "link_num_slots": {
+        "type": "integer",
+        "description": "Number of available time slots",
+        "minimum": 0
+      },
+      "link_restrictions": {
+        "type": ["object", "null"],
+        "description": "Booking restrictions configuration"
+      },
+      "link_custom_questions": {
+        "type": ["array", "null"],
+        "description": "List of custom questions",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": ["entity", "activity", "link_id", "link_type"],
+    "additionalProperties": false
+  }

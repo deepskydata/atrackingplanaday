@@ -1,0 +1,40 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.vimcal/calendar/v1.0.json",
+    "title": "Calendar Entity Schema",
+    "description": "Schema for calendar entity events",
+    "self": {
+      "vendor": "com.vimcal",
+      "namespace": "calendar",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "description": "Entity name",
+        "enum": ["calendar"]
+      },
+      "activity": {
+        "type": "string",
+        "description": "Calendar activity type",
+        "enum": ["connected", "disconnected"]
+      },
+      "calendar_id": {
+        "type": "string",
+        "description": "Unique calendar identifier"
+      },
+      "calendar_source": {
+        "type": "string",
+        "description": "Calendar provider source",
+        "enum": ["google", "outlook", "other"]
+      },
+      "calendar_permission_level": {
+        "type": "string",
+        "description": "Calendar access level",
+        "enum": ["read", "write"]
+      }
+    },
+    "required": ["entity", "activity", "calendar_id", "calendar_source"],
+    "additionalProperties": false
+  }

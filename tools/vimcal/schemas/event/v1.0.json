@@ -1,0 +1,84 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.vimcal/event/v1.0.json",
+    "title": "Event Entity Schema",
+    "description": "Schema for calendar event entity events",
+    "self": {
+      "vendor": "com.vimcal",
+      "namespace": "event",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "description": "Entity name",
+        "enum": ["event"]
+      },
+      "activity": {
+        "type": "string",
+        "description": "Event activity type",
+        "enum": ["created", "deleted", "invitations_sent"]
+      },
+      "event_id": {
+        "type": "string",
+        "description": "Unique event identifier"
+      },
+      "event_type": {
+        "type": "string",
+        "description": "Type of event",
+        "enum": ["meeting", "appointment", "other"]
+      },
+      "event_duration": {
+        "type": "integer",
+        "description": "Event duration in minutes",
+        "minimum": 1
+      },
+      "event_num_attendees": {
+        "type": "integer",
+        "description": "Number of event attendees",
+        "minimum": 1
+      },
+      "event_has_video": {
+        "type": "boolean",
+        "description": "Whether event has video conference"
+      },
+      "event_video_provider": {
+        "type": ["string", "null"],
+        "description": "Video conference provider if applicable",
+        "enum": ["zoom", "meet", "teams", null]
+      },
+      "event_created_source": {
+        "type": "string",
+        "description": "Source of event creation",
+        "enum": ["ui", "api", "import"]
+      },
+      "event_status": {
+        "type": "string",
+        "description": "Current event status",
+        "enum": ["confirmed", "tentative", "cancelled"]
+      },
+      "event_is_recurring": {
+        "type": "boolean",
+        "description": "Whether event is recurring"
+      },
+      "event_creator_type": {
+        "type": "string",
+        "description": "Whether event was created by self or external",
+        "enum": ["self", "external"]
+      },
+      "event_creator_domain": {
+        "type": ["string", "null"],
+        "description": "Domain of external event creator"
+      }
+    },
+    "required": [
+      "entity", 
+      "activity", 
+      "event_id",
+      "event_type",
+      "event_duration",
+      "event_status"
+    ],
+    "additionalProperties": false
+  }

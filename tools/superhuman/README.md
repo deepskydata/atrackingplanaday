@@ -1,4 +1,4 @@
-# Slack Event Tracking Documentation & Implementation Guide
+# Superhuman Event Tracking Documentation & Implementation Guide
 
 ## Overview
 

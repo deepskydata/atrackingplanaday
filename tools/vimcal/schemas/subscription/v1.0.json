@@ -1,0 +1,44 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.vimcal/subscription/v1.0.json",
+    "title": "Subscription Entity Schema",
+    "description": "Schema for subscription entity events",
+    "self": {
+      "vendor": "com.vimcal",
+      "namespace": "subscription",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "description": "Entity name",
+        "enum": ["subscription"]
+      },
+      "activity": {
+        "type": "string",
+        "description": "Subscription activity type",
+        "enum": ["trial_started", "started", "renewed", "cancelled", "ended"]
+      },
+      "subscription_id": {
+        "type": "string",
+        "description": "Unique subscription identifier"
+      },
+      "subscription_plan": {
+        "type": "string",
+        "description": "Subscription plan type"
+      },
+      "subscription_status": {
+        "type": "string",
+        "description": "Current subscription status",
+        "enum": ["active", "cancelled", "ended"]
+      },
+      "subscription_billing_period": {
+        "type": "string",
+        "description": "Billing period",
+        "enum": ["monthly", "annual"]
+      }
+    },
+    "required": ["entity", "activity", "subscription_id", "subscription_status"],
+    "additionalProperties": false
+  }
