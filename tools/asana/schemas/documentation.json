@@ -1,0 +1,467 @@
+{
+    "metadata": {
+      "version": "1.0",
+      "last_updated": "2024-01-30",
+      "owner": "Analytics Team"
+    },
+    "entities": {
+      "organization": {
+        "description": "Represents a company or organization using Asana",
+        "properties": {
+          "organization_id": {
+            "type": "string",
+            "description": "Unique identifier for organization",
+            "required": true,
+            "example": "org_123456"
+          },
+          "organization_name": {
+            "type": "string",
+            "description": "Organization display name",
+            "required": true,
+            "example": "Acme Corp"
+          },
+          "organization_domain": {
+            "type": "string",
+            "description": "Primary email domain",
+            "required": true,
+            "example": "acme.com"
+          },
+          "organization_size_group": {
+            "type": "string",
+            "description": "Size bracket of organization",
+            "required": true,
+            "example": "51-200"
+          },
+          "organization_plan_type": {
+            "type": "string",
+            "description": "Subscription plan type",
+            "required": true,
+            "example": "business"
+          },
+          "organization_subscription_status": {
+            "type": "string",
+            "description": "Current subscription status",
+            "required": true,
+            "example": "active"
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when a new organization is created",
+            "trigger": "First admin user completes organization setup",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Organization Growth Rate", "Acquisition Funnel Conversion"]
+          },
+          "deleted": {
+            "description": "Fired when an organization is removed from Asana",
+            "trigger": "Admin initiates deletion",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Churn Rate", "Organization Lifetime"]
+          }
+        }
+      },
+      "subscription": {
+        "description": "Represents the paid relationship between organization and Asana",
+        "properties": {
+          "subscription_id": {
+            "type": "string",
+            "description": "Unique subscription identifier",
+            "required": true,
+            "example": "sub_123456"
+          },
+          "subscription_plan_type": {
+            "type": "string",
+            "description": "Plan level",
+            "required": true,
+            "example": "business"
+          },
+          "subscription_billing_period": {
+            "type": "string",
+            "description": "Billing frequency",
+            "required": true,
+            "example": "annual"
+          },
+          "subscription_user_count": {
+            "type": "integer",
+            "description": "Licensed user count",
+            "required": true,
+            "example": 50
+          },
+          "subscription_start_date": {
+            "type": "string",
+            "description": "Start of subscription",
+            "required": true,
+            "example": "2024-01-30"
+          },
+          "subscription_end_date": {
+            "type": "string",
+            "description": "End of subscription",
+            "required": true,
+            "example": "2025-01-29"
+          },
+          "subscription_auto_renew": {
+            "type": "boolean",
+            "description": "Auto-renewal status",
+            "required": true,
+            "example": true
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when new subscription is initiated",
+            "trigger": "Organization completes subscription purchase",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["New MRR", "Conversion Rate"]
+          },
+          "renewed": {
+            "description": "Fired when subscription is renewed",
+            "trigger": "Successful subscription renewal",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Renewal Rate", "MRR Retention"]
+          },
+          "canceled": {
+            "description": "Fired when subscription is canceled",
+            "trigger": "Organization cancels subscription",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Cancellation Rate", "Time to Cancel"]
+          },
+          "ended": {
+            "description": "Fired when subscription period ends after cancellation",
+            "trigger": "Subscription period expires",
+            "sources": ["Backend API", "Billing System"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Churn Rate", "Subscription Lifetime"]
+          }
+        }
+      },
+      "team": {
+        "description": "Represents a group of users working together in Asana",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "description": "Unique team identifier",
+            "required": true,
+            "example": "team_123456"
+          },
+          "team_name": {
+            "type": "string",
+            "description": "Team display name",
+            "required": true,
+            "example": "Marketing Team"
+          },
+          "team_size": {
+            "type": "integer",
+            "description": "Current team member count",
+            "required": true,
+            "example": 8
+          },
+          "team_privacy_setting": {
+            "type": "string",
+            "description": "Team access level",
+            "required": true,
+            "example": "private"
+          },
+          "team_has_goals": {
+            "type": "boolean",
+            "description": "Has active goals",
+            "required": true,
+            "example": true
+          },
+          "team_has_workflows": {
+            "type": "boolean",
+            "description": "Has active workflows",
+            "required": true,
+            "example": true
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when new team is created",
+            "trigger": "User creates team",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Team Creation Rate", "Organization Growth"]
+          },
+          "member_added": {
+            "description": "Fired when user is added to team",
+            "trigger": "Admin adds user to team",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Team Growth Rate", "Collaboration Adoption"]
+          },
+          "member_removed": {
+            "description": "Fired when user is removed from team",
+            "trigger": "Admin removes user from team",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Team Churn Rate", "Team Health"]
+          }
+        }
+      },
+      "project": {
+        "description": "Represents a container for tasks and workflows",
+        "properties": {
+          "project_id": {
+            "type": "string",
+            "description": "Unique project identifier",
+            "required": true,
+            "example": "proj_123456"
+          },
+          "project_name": {
+            "type": "string",
+            "description": "Project display name",
+            "required": true,
+            "example": "Q1 Campaign"
+          },
+          "project_type": {
+            "type": "string",
+            "description": "Project view type",
+            "required": true,
+            "example": "board"
+          },
+          "project_template_id": {
+            "type": "string",
+            "description": "Template used (if any)",
+            "required": false,
+            "example": "templ_789"
+          },
+          "project_privacy_setting": {
+            "type": "string",
+            "description": "Project access level",
+            "required": true,
+            "example": "team"
+          },
+          "project_goal_count": {
+            "type": "integer",
+            "description": "Number of linked goals",
+            "required": true,
+            "example": 2
+          },
+          "project_workflow_count": {
+            "type": "integer",
+            "description": "Number of active workflows",
+            "required": true,
+            "example": 1
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when new project is initialized",
+            "trigger": "User creates project",
+            "sources": ["Backend API", "Frontend"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Project Creation Rate", "Template Usage"]
+          },
+          "completed": {
+            "description": "Fired when project is marked complete",
+            "trigger": "User marks project complete",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Project Completion Rate", "Project Duration"]
+          },
+          "goal_linked": {
+            "description": "Fired when project is connected to goal",
+            "trigger": "User links project to goal",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Goal Alignment Rate", "Strategic Alignment"]
+          }
+        }
+      },
+      "task": {
+        "description": "Represents a work unit in Asana",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "Unique task identifier",
+            "required": true,
+            "example": "task_123456"
+          },
+          "task_name": {
+            "type": "string",
+            "description": "Task display name",
+            "required": true,
+            "example": "Write blog post"
+          },
+          "task_status": {
+            "type": "string",
+            "description": "Current task status",
+            "required": true,
+            "example": "in_progress"
+          },
+          "task_priority": {
+            "type": "string",
+            "description": "Task priority level",
+            "required": true,
+            "example": "high"
+          },
+          "task_type": {
+            "type": "string",
+            "description": "Task type",
+            "required": true,
+            "example": "standard"
+          },
+          "task_parent_id": {
+            "type": "string",
+            "description": "Parent task ID if subtask",
+            "required": false,
+            "example": "task_789"
+          },
+          "task_created_by": {
+            "type": "string",
+            "description": "Creator (user/workflow) ID",
+            "required": true,
+            "example": "user_123"
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when new task is created",
+            "trigger": "User or workflow creates task",
+            "sources": ["Backend API", "Frontend", "Workflow"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Task Creation Rate", "Workflow Automation Rate"]
+          },
+          "assigned": {
+            "description": "Fired when task is assigned",
+            "trigger": "User assigns task",
+            "sources": ["Backend API", "Frontend"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Assignment Rate", "Task Distribution"]
+          },
+          "completed": {
+            "description": "Fired when task is marked complete",
+            "trigger": "User completes task",
+            "sources": ["Backend API", "Frontend"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Completion Rate", "Time to Complete"]
+          },
+          "commented": {
+            "description": "Fired when comment is added to task",
+            "trigger": "User adds comment",
+            "sources": ["Backend API", "Frontend"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Collaboration Rate", "Comment Volume"]
+          }
+        }
+      },
+      "workflow": {
+        "description": "Represents an automated process template in Asana",
+        "properties": {
+          "workflow_id": {
+            "type": "string",
+            "description": "Unique workflow identifier",
+            "required": true,
+            "example": "flow_123456"
+          },
+          "workflow_name": {
+            "type": "string",
+            "description": "Workflow display name",
+            "required": true,
+            "example": "Content Approval"
+          },
+          "workflow_type": {
+            "type": "string",
+            "description": "Workflow category",
+            "required": true,
+            "example": "approval"
+          },
+          "workflow_steps_count": {
+            "type": "integer",
+            "description": "Total steps in workflow",
+            "required": true,
+            "example": 5
+          },
+          "workflow_has_ai": {
+            "type": "boolean",
+            "description": "Uses AI automation",
+            "required": true,
+            "example": true
+          },
+          "workflow_active_projects_count": {
+            "type": "integer",
+            "description": "Projects using workflow",
+            "required": true,
+            "example": 3
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when new workflow is created",
+            "trigger": "User creates workflow",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Workflow Creation Rate", "Automation Adoption"]
+          },
+          "applied": {
+            "description": "Fired when workflow is applied to project/task",
+            "trigger": "User applies workflow",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Workflow Usage Rate", "Automation Coverage"]
+          },
+          "step_executed": {
+            "description": "Fired when workflow step completes",
+            "trigger": "Workflow step execution",
+            "sources": ["Backend API", "Workflow Engine"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["Automation Success Rate", "Time Savings"]
+          }
+        }
+      },
+      "user": {
+        "description": "Represents an individual user in Asana",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "description": "Unique user identifier",
+            "required": true,
+            "example": "user_123456"
+          },
+          "user_email": {
+            "type": "string",
+            "description": "User's email address",
+            "required": true,
+            "example": "user@company.com"
+          },
+          "user_role": {
+            "type": "string",
+            "description": "User's role in organization",
+            "required": true,
+            "example": "member"
+          },
+          "user_team_count": {
+            "type": "integer",
+            "description": "Number of teams user belongs to",
+            "required": true,
+            "example": 2
+          },
+          "user_status": {
+            "type": "string",
+            "description": "Current user status",
+            "required": true,
+            "example": "active"
+          }
+        },
+        "activities": {
+          "created": {
+            "description": "Fired when new user account is created",
+            "trigger": "User completes account creation",
+            "sources": ["Backend API"],
+            "implementation_status": "Not Implemented",
+            "metrics": ["User Growth Rate", "Account Creation Success"]
+          },
+          "invited": {
+            "description": "Fired when user is invited"
+          }
+        }
+      }
+    }
+}
+        
+        

@@ -1,0 +1,57 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.asana/tracking/organization/v1.0.json",
+    "title": "Organization Entity Schema",
+    "description": "Schema for organization-related events in Asana",
+    "self": {
+      "vendor": "com.asana",
+      "namespace": "tracking.organization",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "const": "organization",
+        "description": "Organization entity identifier"
+      },
+      "activity": {
+        "type": "string",
+        "description": "Organization activity type",
+        "enum": ["created", "deleted"]
+      },
+      "organization_id": {
+        "type": "string",
+        "description": "Unique identifier for organization"
+      },
+      "organization_name": {
+        "type": "string",
+        "description": "Organization display name"
+      },
+      "organization_domain": {
+        "type": "string",
+        "description": "Primary email domain"
+      },
+      "organization_size_group": {
+        "type": "string",
+        "description": "Size bracket of organization",
+        "enum": ["0-10", "11-50", "51-200", "201-500", "501-1000", "1001+"]
+      },
+      "organization_plan_type": {
+        "type": "string",
+        "description": "Subscription plan type",
+        "enum": ["free", "premium", "business", "enterprise"]
+      },
+      "organization_subscription_status": {
+        "type": "string",
+        "description": "Current subscription status",
+        "enum": ["active", "canceled", "expired", "trial"]
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "organization_id"
+    ],
+    "additionalProperties": false
+  }

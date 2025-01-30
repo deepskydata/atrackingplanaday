@@ -1,0 +1,67 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.asana/tracking/project/v1.0.json",
+    "title": "Project Entity Schema",
+    "description": "Schema for project-related events in Asana",
+    "self": {
+      "vendor": "com.asana",
+      "namespace": "tracking.project",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "const": "project",
+        "description": "Project entity identifier"
+      },
+      "activity": {
+        "type": "string",
+        "description": "Project activity type",
+        "enum": ["created", "completed", "goal_linked"]
+      },
+      "project_id": {
+        "type": "string",
+        "description": "Unique project identifier"
+      },
+      "project_name": {
+        "type": "string",
+        "description": "Project display name"
+      },
+      "project_type": {
+        "type": "string",
+        "description": "Project view type",
+        "enum": ["list", "board", "timeline", "calendar"]
+      },
+      "project_template_id": {
+        "type": ["string", "null"],
+        "description": "Template used (if any)"
+      },
+      "project_privacy_setting": {
+        "type": "string",
+        "description": "Project access level",
+        "enum": ["private", "public", "team"]
+      },
+      "project_goal_count": {
+        "type": "integer",
+        "description": "Number of linked goals",
+        "minimum": 0
+      },
+      "project_workflow_count": {
+        "type": "integer",
+        "description": "Number of active workflows",
+        "minimum": 0
+      },
+      "project_team_id": {
+        "type": "string",
+        "description": "Parent team ID"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "project_id",
+      "project_type"
+    ],
+    "additionalProperties": false
+  }

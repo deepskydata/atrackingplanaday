@@ -1,0 +1,81 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.asana/tracking/goal/v1.0.json",
+    "title": "Goal Entity Schema",
+    "description": "Schema for goal-related events in Asana",
+    "self": {
+      "vendor": "com.asana",
+      "namespace": "tracking.goal",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "const": "goal",
+        "description": "Goal entity identifier"
+      },
+      "activity": {
+        "type": "string",
+        "description": "Goal activity type",
+        "enum": ["created", "updated", "completed"]
+      },
+      "goal_id": {
+        "type": "string",
+        "description": "Unique goal identifier"
+      },
+      "goal_name": {
+        "type": "string",
+        "description": "Goal display name"
+      },
+      "goal_type": {
+        "type": "string",
+        "description": "Type of goal",
+        "enum": ["quantitative", "qualitative"]
+      },
+      "goal_status": {
+        "type": "string",
+        "description": "Current goal status",
+        "enum": ["not_started", "in_progress", "achieved", "missed"]
+      },
+      "goal_timeframe": {
+        "type": "string",
+        "description": "Goal time period",
+        "enum": ["quarterly", "annual", "custom"]
+      },
+      "goal_linked_projects_count": {
+        "type": "integer",
+        "description": "Number of projects linked to goal",
+        "minimum": 0
+      },
+      "goal_team_id": {
+        "type": "string",
+        "description": "Team that owns the goal"
+      },
+      "goal_start_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Goal start date"
+      },
+      "goal_end_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Goal target completion date"
+      },
+      "goal_progress": {
+        "type": "number",
+        "description": "Goal completion percentage",
+        "minimum": 0,
+        "maximum": 100
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "goal_id",
+      "goal_type",
+      "goal_status",
+      "goal_team_id"
+    ],
+    "additionalProperties": false
+  }

@@ -1,0 +1,71 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.asana/tracking/task/v1.0.json",
+    "title": "Task Entity Schema",
+    "description": "Schema for task-related events in Asana",
+    "self": {
+      "vendor": "com.asana",
+      "namespace": "tracking.task",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "const": "task",
+        "description": "Task entity identifier"
+      },
+      "activity": {
+        "type": "string",
+        "description": "Task activity type",
+        "enum": ["created", "assigned", "completed", "commented"]
+      },
+      "task_id": {
+        "type": "string",
+        "description": "Unique task identifier"
+      },
+      "task_name": {
+        "type": "string",
+        "description": "Task display name"
+      },
+      "task_status": {
+        "type": "string",
+        "description": "Current task status",
+        "enum": ["not_started", "in_progress", "completed"]
+      },
+      "task_priority": {
+        "type": "string",
+        "description": "Task priority level",
+        "enum": ["low", "medium", "high"]
+      },
+      "task_due_date": {
+        "type": ["string", "null"],
+        "format": "date",
+        "description": "Task deadline"
+      },
+      "task_type": {
+        "type": "string",
+        "description": "Task type",
+        "enum": ["standard", "subtask"]
+      },
+      "task_parent_id": {
+        "type": ["string", "null"],
+        "description": "Parent task ID if subtask"
+      },
+      "task_created_by": {
+        "type": "string",
+        "description": "Creator (user/workflow) ID"
+      },
+      "task_project_id": {
+        "type": "string",
+        "description": "Parent project ID"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "task_id",
+      "task_type"
+    ],
+    "additionalProperties": false
+  }

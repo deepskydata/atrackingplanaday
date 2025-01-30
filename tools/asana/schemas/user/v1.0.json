@@ -1,0 +1,64 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.asana/tracking/user/v1.0.json",
+    "title": "User Entity Schema",
+    "description": "Schema for user-related events in Asana",
+    "self": {
+      "vendor": "com.asana",
+      "namespace": "tracking.user",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "const": "user",
+        "description": "User entity identifier"
+      },
+      "activity": {
+        "type": "string",
+        "description": "User activity type",
+        "enum": ["created", "invited", "activated", "deactivated"]
+      },
+      "user_id": {
+        "type": "string",
+        "description": "Unique user identifier"
+      },
+      "user_email": {
+        "type": "string",
+        "format": "email",
+        "description": "User's email address"
+      },
+      "user_role": {
+        "type": "string",
+        "description": "User's role in organization",
+        "enum": ["member", "admin", "owner"]
+      },
+      "user_team_count": {
+        "type": "integer",
+        "description": "Number of teams user belongs to",
+        "minimum": 0
+      },
+      "user_organization_id": {
+        "type": "string",
+        "description": "Parent organization ID"
+      },
+      "user_last_active": {
+        "type": ["string", "null"],
+        "format": "date-time",
+        "description": "Last activity timestamp"
+      },
+      "user_status": {
+        "type": "string",
+        "description": "Current user status",
+        "enum": ["pending", "active", "deactivated"]
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "user_id",
+      "user_organization_id"
+    ],
+    "additionalProperties": false
+  }

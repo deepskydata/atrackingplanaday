@@ -1,0 +1,64 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.asana/tracking/subscription/v1.0.json",
+    "title": "Subscription Entity Schema",
+    "description": "Schema for subscription-related events in Asana",
+    "self": {
+      "vendor": "com.asana",
+      "namespace": "tracking.subscription",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "const": "subscription",
+        "description": "Subscription entity identifier"
+      },
+      "activity": {
+        "type": "string",
+        "description": "Subscription activity type",
+        "enum": ["created", "renewed", "canceled", "ended"]
+      },
+      "subscription_id": {
+        "type": "string",
+        "description": "Unique subscription identifier"
+      },
+      "subscription_plan_type": {
+        "type": "string",
+        "description": "Plan level",
+        "enum": ["premium", "business", "enterprise"]
+      },
+      "subscription_billing_period": {
+        "type": "string",
+        "description": "Billing frequency",
+        "enum": ["monthly", "annual"]
+      },
+      "subscription_user_count": {
+        "type": "integer",
+        "description": "Licensed user count",
+        "minimum": 1
+      },
+      "subscription_start_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Start of subscription"
+      },
+      "subscription_end_date": {
+        "type": "string",
+        "format": "date",
+        "description": "End of subscription"
+      },
+      "subscription_auto_renew": {
+        "type": "boolean",
+        "description": "Auto-renewal status"
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "subscription_id",
+      "subscription_plan_type"
+    ],
+    "additionalProperties": false
+  }

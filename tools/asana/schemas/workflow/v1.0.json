@@ -1,0 +1,67 @@
+{
+    "$schema": "https://raw.githubusercontent.com/silverton-io/buz/main/schemas/io.silverton/buz/internal/meta/v1.0.json",
+    "$id": "com.asana/tracking/workflow/v1.0.json",
+    "title": "Workflow Entity Schema",
+    "description": "Schema for workflow-related events in Asana",
+    "self": {
+      "vendor": "com.asana",
+      "namespace": "tracking.workflow",
+      "version": "1.0"
+    },
+    "type": "object",
+    "properties": {
+      "entity": {
+        "type": "string",
+        "const": "workflow",
+        "description": "Workflow entity identifier"
+      },
+      "activity": {
+        "type": "string",
+        "description": "Workflow activity type",
+        "enum": ["created", "applied", "step_executed"]
+      },
+      "workflow_id": {
+        "type": "string",
+        "description": "Unique workflow identifier"
+      },
+      "workflow_name": {
+        "type": "string",
+        "description": "Workflow display name"
+      },
+      "workflow_type": {
+        "type": "string",
+        "description": "Workflow category",
+        "enum": ["approval", "onboarding", "content", "custom"]
+      },
+      "workflow_steps_count": {
+        "type": "integer",
+        "description": "Total steps in workflow",
+        "minimum": 1
+      },
+      "workflow_has_ai": {
+        "type": "boolean",
+        "description": "Uses AI automation"
+      },
+      "workflow_team_id": {
+        "type": "string",
+        "description": "Parent team ID"
+      },
+      "workflow_last_execution": {
+        "type": ["string", "null"],
+        "format": "date-time",
+        "description": "Last execution timestamp"
+      },
+      "workflow_active_projects_count": {
+        "type": "integer",
+        "description": "Projects using workflow",
+        "minimum": 0
+      }
+    },
+    "required": [
+      "entity",
+      "activity",
+      "workflow_id",
+      "workflow_type"
+    ],
+    "additionalProperties": false
+  }
