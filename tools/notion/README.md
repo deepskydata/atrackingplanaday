@@ -8,8 +8,8 @@ As detailed in Event Data DesignChapter of the Analytics Implementation Workbook
 
 ## References:
 My book, I used with Claude AI to create that tracking plan: https://link.timodechau.com/evAz2u
-Blog post describing the design: 
-YouTube video showing how I created this design: 
+Blog post describing the design: https://timodechau.com/building-notions-analytics-foundation-a-product-first-tracking-plan/
+YouTube video showing how I created this design: https://youtu.be/bMHNyLNGpsM
 
 
 

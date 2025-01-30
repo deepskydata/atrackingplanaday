@@ -4,6 +4,14 @@
 
 This document provides comprehensive documentation for Asana's event tracking implementation. It covers all entities, activities, and properties, and includes implementation details using a data layer approach.
 
+## Implementation Context
+As detailed in Event Data DesignChapter of the Analytics Implementation Workbook, this tracking plan follows the Double Three Layer Framework (D3L).
+
+## References:
+My book, I used with Claude AI to create that tracking plan: https://link.timodechau.com/evAz2u
+Blog post describing the design: https://timodechau.com/combining-your-product-strategy-with-your-analytics-implementation-tracking-plan-for-asana
+YouTube video showing how I created this design: https://youtu.be/M18Ese3iWvw
+
 ## Data Layer Implementation
 
 All events should be pushed to a central data layer object before being sent to analytics destinations. Use this structure:
